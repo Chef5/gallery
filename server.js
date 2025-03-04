@@ -1,15 +1,6 @@
 const express = require("express");
-const {
-  S3Client,
-  GetObjectCommand,
-  PutObjectCommand,
-  ListObjectsCommand,
-  HeadObjectCommand,
-} = require("@aws-sdk/client-s3");
-const { Upload } = require("@aws-sdk/lib-storage");
-const sharp = require("sharp");
+const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 const dotenv = require("dotenv");
-const path = require("path");
 const exifParser = require("exif-parser");
 const imageList = require("./data.json");
 
@@ -71,14 +62,10 @@ const s3Client = new S3Client({
 
 const BUCKET_NAME = process.env.R2_BUCKET_NAME;
 const IMAGE_BASE_URL = process.env.R2_IMAGE_BASE_URL;
-const IMAGE_DIR = process.env.R2_IMAGE_DIR;
 const IMAGE_COMPRESSION_QUALITY = parseInt(
   process.env.IMAGE_COMPRESSION_QUALITY,
   10
 );
-
-const validImageExtensions = [".jpg", ".jpeg", ".png", ".gif"];
-
 async function getExifData(key) {
   try {
     console.log(`获取EXIF数据: ${key}`);
