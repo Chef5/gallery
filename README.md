@@ -17,6 +17,14 @@ Gallery-Portfolio
 
 **Gallery-Portfolio** 是一个简单的 **摄影作品展示站**，你只需要将图片存放在免费的 **Cloudflare R2** 上（或其他支持 **AWS S3** 的对象存储），即可在这里展现你的精选图片。在这里你可以通过 **瀑布流** 的形式浏览图片，也可以 **点开大图** ，查看光圈 / 快门 / ISO 等 **EXIF** 信息。网站基于 Node.js，使用 **Material Design** 风格的 **响应式设计**，支持 **日夜间模式** 切换，在不同的设备上都有不错的视觉效果。
 
+在原作者的基础上，有以下调整：
+
+- 获取全部图片功能: 获取全部图片改成了`npm run init`直接在本地生成`data.json`
+- 删除了生成缩略图功能：缩略图我直接用的`七牛云`的功能，直接加了后缀访问就是缩略图`{key}??imageView2/2/w/200/h/400/format/webp/q/90`
+- `npm run init`: 目前只适配了`七牛云`，因为我是用的七牛云托管的
+
+所以部署项目前，需要先将项目拉到本地，通过`npm run init`生成`data.json`后，在部署到vercel。
+
 <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%linyuxuanlin%2FGallery-Portfolio&env=R2_ACCESS_KEY_ID,R2_SECRET_ACCESS_KEY,R2_BUCKET_NAME,R2_ENDPOINT,R2_IMAGE_BASE_URL,R2_IMAGE_DIR,IMAGE_COMPRESSION_QUALITY"><img src="https://vercel.com/button" alt="Deploy with Vercel"/></a>
 
 ## 功能特性
